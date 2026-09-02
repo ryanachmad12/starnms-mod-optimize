@@ -1,0 +1,13 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "vite build",
+        "dev": "vite"
+    },
+    "devDependencies": {
+        "concurrently": "^8.2.2",
+        "laravel-vite-plugin": "^0.8.1",
+        "vite": "^4.5.5"
+    }
+}

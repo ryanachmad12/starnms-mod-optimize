@@ -1,0 +1,154 @@
+name: starnms
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+    image: starnms-nginx:${STARNMS_TAG:-latest}
+    restart: unless-stopped
+    ports:
+      - "${HTTP_PORT:-80}:80"
+    read_only: true
+    tmpfs:
+      - /var/cache/nginx
+      - /var/run
+    depends_on:
+      app:
+        condition: service_healthy
+    networks:
+      - starnms-private
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: starnms-app:${STARNMS_TAG:-latest}
+    restart: unless-stopped
+    env_file:
+      - .env.docker
+    environment:
+      DB_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env.docker}
+    expose:
+      - "9000"
+    volumes:
+      - app-storage:/var/www/html/storage
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "php artisan about --only=environment --no-ansi >/dev/null 2>&1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    cap_add:
+      - NET_RAW
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - starnms-private
+
+  scheduler:
+    image: starnms-app:${STARNMS_TAG:-latest}
+    restart: unless-stopped
+    command: ["php", "artisan", "schedule:work", "--no-interaction"]
+    env_file:
+      - .env.docker
+    environment:
+      DB_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env.docker}
+    volumes:
+      - app-storage:/var/www/html/storage
+    depends_on:
+      app:
+        condition: service_healthy
+    networks:
+      - starnms-private
+    security_opt:
+      - no-new-privileges:true
+
+  worker:
+    image: starnms-app:${STARNMS_TAG:-latest}
+    restart: unless-stopped
+    command: ["worker-entrypoint"]
+    env_file:
+      - .env.docker
+    environment:
+      DB_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env.docker}
+    volumes:
+      - app-storage:/var/www/html/storage
+    depends_on:
+      app:
+        condition: service_healthy
+    cap_add:
+      - NET_RAW
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - starnms-private
+
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-starnms}
+      POSTGRES_USER: ${POSTGRES_USER:-starnms}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env.docker}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - starnms-private
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes", "--save", "60", "1000", "--maxmemory", "${REDIS_MAXMEMORY:-256mb}", "--maxmemory-policy", "noeviction"]
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - starnms-private
+
+  postgres-backup:
+    build:
+      context: ./docker/backup
+    image: starnms-postgres-backup:${STARNMS_TAG:-latest}
+    restart: unless-stopped
+    environment:
+      PGHOST: postgres
+      PGPORT: 5432
+      PGDATABASE: ${POSTGRES_DB:-starnms}
+      PGUSER: ${POSTGRES_USER:-starnms}
+      PGPASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env.docker}
+      BACKUP_HOUR_UTC: ${BACKUP_HOUR_UTC:-2}
+      DAILY_RETENTION_DAYS: ${DAILY_RETENTION_DAYS:-14}
+      WEEKLY_RETENTION_WEEKS: ${WEEKLY_RETENTION_WEEKS:-8}
+      MONTHLY_RETENTION_MONTHS: ${MONTHLY_RETENTION_MONTHS:-12}
+    volumes:
+      - ./db_backup:/backups
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - starnms-private
+
+volumes:
+  app-storage:
+  postgres-data:
+  redis-data:
+
+networks:
+  starnms-private:
+    driver: bridge

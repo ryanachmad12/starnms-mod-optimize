@@ -1,0 +1,8 @@
+.base-station-parent[hidden]{display:none!important}
+.conditional-radio-fields>*{min-width:0}
+.conditional-radio-fields input,.conditional-radio-fields select{width:100%;min-width:0}
+.station-remote{position:relative}
+.station-remote>span{display:block;text-align:left;color:var(--cyan);font:7px DM Mono;margin:2px 0 4px}
+#deviceModal{width:min(760px,96vw);overflow-x:hidden}
+#deviceModal form{max-width:100%;overflow-x:hidden}
+@media(max-width:680px){.conditional-radio-fields{grid-template-columns:1fr}}

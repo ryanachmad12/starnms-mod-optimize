@@ -1,0 +1,10 @@
+/.env
+/.env.docker
+/vendor/
+/node_modules/
+/public/build/
+/storage/*.key
+/storage/logs/*.log
+/.phpunit.cache
+/db_backup/*
+!/db_backup/.gitkeep

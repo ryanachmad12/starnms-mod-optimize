@@ -1,0 +1,1 @@
+<details class="alert-center" data-alert-url="{{ route('monitor.alerts') }}"><summary title="Alert notifications">🔔</summary><div class="alert-panel"><strong>Alert notifications</strong><div class="alert-items"><p>Memuat alert aktif...</p></div></div></details>

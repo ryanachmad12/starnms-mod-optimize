@@ -1,0 +1,12 @@
+#topology{position:relative;height:660px;min-height:660px;padding:0!important;overflow:hidden!important}
+#topology .core-node{position:absolute;z-index:3;left:50%;top:50%;margin:0;transform:translate(-50%,-50%);width:190px;padding:16px}
+#topology .core-project-trunk{display:none}
+#topology .project-topology{position:absolute;inset:0;width:100%;min-width:0;margin:0;padding:0;display:block;overflow:visible}
+#topology .project-topology:before{display:none}
+#topology .project-branch{position:absolute;z-index:2;min-width:0;padding:0;transform:translate(-50%,-50%);transition:left .25s ease,top .25s ease,width .25s ease}
+#topology .project-connector{display:none}
+#topology .project-node{box-sizing:border-box;width:100%;min-height:145px;max-height:190px;margin:0;padding:12px;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 8px 26px #0004}
+#topology .project-node .project-type-stats{margin-top:auto;width:100%;max-height:74px;overflow:auto}
+#topology .topology-links{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+#topology .topology-links line{stroke:#36505c;stroke-width:1.2;stroke-dasharray:5 5}
+@media(max-width:900px){#topology{height:760px;min-height:760px}#topology .project-node{font-size:10px}#topology .project-node>strong{font-size:10px}}

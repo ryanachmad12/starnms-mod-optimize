@@ -1,0 +1,2 @@
+<?php
+return ['driver' => env('SESSION_DRIVER', 'redis'), 'lifetime' => 120, 'expire_on_close' => false, 'encrypt' => filter_var(env('SESSION_ENCRYPT', true), FILTER_VALIDATE_BOOL), 'files' => storage_path('framework/sessions'), 'connection' => env('SESSION_CONNECTION', 'default'), 'table' => 'sessions', 'store' => null, 'lottery' => [2,100], 'cookie' => env('SESSION_COOKIE', 'starnms_session'), 'path' => '/', 'domain' => null, 'secure' => filter_var(env('SESSION_SECURE_COOKIE', false), FILTER_VALIDATE_BOOL), 'http_only' => true, 'same_site' => 'lax'];

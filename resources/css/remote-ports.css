@@ -1,0 +1,1 @@
+.remote-config{border:1px solid #24414b;background:#0a151c;padding:14px;border-radius:5px}.remote-port-fields{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:13px}.remote-port-fields label{min-width:0}.remote-port-fields input,.remote-port-fields select{width:100%}@media(max-width:680px){.remote-port-fields{grid-template-columns:1fr 1fr}}

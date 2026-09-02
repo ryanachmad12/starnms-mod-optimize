@@ -1,0 +1,8 @@
+.detail-device{grid-template-columns:30px minmax(0,1fr) auto!important}
+.device-sla{grid-column:3;grid-row:1/span 2;align-self:center;font:normal 8px DM Mono;color:#ff8190;border-left:2px solid var(--red);padding:4px 0 4px 7px;white-space:nowrap}
+.project-sla-summary{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:9px;padding-top:8px;border-top:1px solid #263e49}
+.project-sla-summary b{font:8px DM Mono;color:#8da2ac;letter-spacing:.4px}
+.project-sla-summary strong{font:700 11px DM Mono;color:#ff8190}
+.base-station-toggle mark{margin-left:5px;padding-left:5px;border-left:2px solid var(--red);background:transparent;color:#ff8190;font:8px DM Mono}
+.sla-toggle{justify-content:flex-start;gap:7px}.sla-toggle small{color:#617b88;font-size:9px;margin-left:2px}
+#topology .project-node{max-height:220px;min-height:175px}

@@ -1,0 +1,39 @@
+.indonesia-map-panel { padding: 0; overflow: hidden; }
+.indonesia-map-panel > .section-head { align-items: end; padding: 28px 30px 20px; }
+.indonesia-map-layout { border-top: 1px solid var(--ops-line); display: grid; grid-template-columns: minmax(0, 1fr) 292px; }
+.indonesia-map { background: radial-gradient(circle at 42% 42%, color-mix(in srgb, var(--ops-accent) 16%, var(--ops-surface)), transparent 44%), linear-gradient(135deg, color-mix(in srgb, var(--ops-surface) 82%, var(--ops-canvas)), var(--ops-surface)); min-height: 440px; overflow: hidden; position: relative; }
+.indonesia-map::before { background-image: linear-gradient(color-mix(in srgb, var(--ops-line) 38%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--ops-line) 38%, transparent) 1px, transparent 1px); background-size: 32px 32px; content: ''; inset: 0; mask-image: linear-gradient(to bottom, black, transparent); opacity: .55; pointer-events: none; position: absolute; }
+.indonesia-map-art { display: block; filter: hue-rotate(104deg) saturate(.75) drop-shadow(0 18px 18px rgb(5 42 49 / 12%)); height: 82%; inset: 9% 4%; object-fit: contain; opacity: .94; position: absolute; width: 92%; }
+:root[data-theme="dark"] .indonesia-map-art { filter: brightness(.78) contrast(1.24) hue-rotate(114deg) saturate(1.28) drop-shadow(0 18px 22px rgb(0 0 0 / 34%)); opacity: .96; }
+.map-markers { inset: 0; position: absolute; }
+.map-marker { align-items: center; color: var(--ops-ink); display: flex; gap: 8px; position: absolute; text-decoration: none; transform: translate(-8px, -8px); z-index: 2; }
+.map-marker > i { animation: map-pulse 2.4s ease-out infinite; background: var(--ops-online); border: 3px solid var(--ops-surface); border-radius: 50%; box-shadow: 0 0 0 4px color-mix(in srgb, var(--ops-online) 28%, transparent), 0 5px 13px rgb(0 0 0 / 25%); display: block; height: 16px; width: 16px; }
+.map-marker.has-offline > i { background: var(--ops-offline); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ops-offline) 33%, transparent), 0 4px 12px rgb(0 0 0 / 22%); }
+.map-marker.unknown > i { background: var(--ops-warning); }
+.map-marker > span { background: color-mix(in srgb, var(--ops-surface) 96%, transparent); border: 1px solid var(--ops-line-strong); border-radius: 7px; box-shadow: var(--ops-shadow); display: none; min-width: 168px; padding: 9px 10px; }
+.map-marker:hover > span, .map-marker:focus-visible > span, .map-marker.is-focused > span { display: block; }
+.map-marker strong, .map-marker small { display: block; }
+.map-marker strong { font-size: 11px; }
+.map-marker small { color: var(--ops-muted); font-size: 9px; margin-top: 3px; }
+.map-marker:focus-visible { outline: 0; }
+.map-marker:focus-visible > i { outline: 2px solid var(--ops-accent); outline-offset: 4px; }
+.map-inspector { background: color-mix(in srgb, var(--ops-surface) 90%, var(--ops-canvas)); border-left: 1px solid var(--ops-line); display: flex; flex-direction: column; padding: 28px 24px; }
+.map-inspector h3 { color: var(--ops-ink); font-size: 20px; letter-spacing: -.03em; margin: 9px 0; }
+.map-inspector > p:not(.eyebrow) { color: var(--ops-muted); font-size: 12px; line-height: 1.65; margin: 0; }
+.map-inspector-metrics { border-top: 1px solid var(--ops-line); display: grid; gap: 13px; margin-top: auto; padding-top: 20px; }
+.map-inspector-metrics span { color: var(--ops-muted); display: flex; font-size: 11px; justify-content: space-between; }
+.map-inspector-metrics b { color: var(--ops-ink); font: 700 13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+@keyframes map-pulse { 50% { box-shadow: 0 0 0 7px color-mix(in srgb, var(--ops-online) 8%, transparent), 0 5px 13px rgb(0 0 0 / 25%); } }
+@media (prefers-reduced-motion: reduce) { .map-marker > i { animation: none; } }
+@media (max-width: 900px) { .indonesia-map-layout { grid-template-columns: 1fr; } .map-inspector { border-left: 0; border-top: 1px solid var(--ops-line); min-height: 185px; } .indonesia-map { min-height: 365px; } }
+@media (max-width: 520px) { .indonesia-map-panel > .section-head { padding: 20px; } .indonesia-map { min-height: 285px; } .map-marker > span { min-width: 120px; } }
+
+.project-location-panel { background: var(--ops-surface); border: 1px solid var(--ops-line); display: grid; grid-template-columns: minmax(0, 1fr) 255px; margin: 0 0 22px; overflow: hidden; }
+.project-location-map { background: radial-gradient(circle at 42% 35%, color-mix(in srgb, var(--ops-accent) 12%, var(--ops-surface)), transparent 40%), color-mix(in srgb, var(--ops-surface) 86%, var(--ops-canvas)); min-height: 205px; position: relative; }
+.project-location-marker { align-items: center; color: var(--ops-ink); display: flex; font-size: 10px; font-weight: 700; gap: 7px; position: absolute; transform: translate(-5px,-5px); }
+.project-location-marker i { background: var(--ops-accent); border: 3px solid var(--ops-surface); border-radius: 50%; box-shadow: 0 0 0 3px color-mix(in srgb, var(--ops-accent) 30%, transparent); display: block; height: 14px; width: 14px; }
+.project-location-panel aside { border-left: 1px solid var(--ops-line); padding: 20px; }
+.project-location-panel aside h2 { font-size: 17px; margin: 7px 0; }
+.project-location-panel aside p { color: var(--ops-muted); font-size: 11px; line-height: 1.65; margin: 0; }
+.project-location-panel aside > span { color: var(--ops-muted); display: block; font: 10px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; margin-top: 16px; }
+@media (max-width: 700px) { .project-location-panel { grid-template-columns: 1fr; } .project-location-panel aside { border-left: 0; border-top: 1px solid var(--ops-line); } }

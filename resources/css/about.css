@@ -1,0 +1,91 @@
+.about-app .sidebar { position: fixed; }
+
+.about-page {
+    display: flex;
+    flex-direction: column;
+    margin-left: 264px;
+    max-width: none;
+    min-height: 100vh;
+    padding: 0 clamp(28px, 6vw, 96px) 0;
+}
+
+.about-page > * { margin-inline: auto; max-width: 1080px; width: 100%; }
+
+.about-header {
+    align-items: center;
+    min-height: 76px;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.about-brand { align-items: center; display: flex; gap: 12px; font-size: 13px; letter-spacing: .01em; }
+.about-brand strong { color: var(--ops-ink); }
+.about-mark { align-items: center; background: color-mix(in srgb, var(--ops-surface) 84%, var(--ops-canvas)); border: 1px solid var(--ops-line-strong); border-radius: 7px; color: var(--ops-ink); display: inline-flex; font: 800 9px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; height: 30px; justify-content: center; letter-spacing: .04em; width: 30px; }
+.about-path { color: var(--ops-muted); font: 11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; letter-spacing: .02em; }
+
+.about-intro { border-bottom: 1px solid var(--ops-line); display: grid; gap: 60px; grid-template-columns: minmax(0, 1fr) 260px; padding: 76px 0 48px; }
+.about-intro .eyebrow { margin: 0 0 17px; }
+.about-intro h1 { color: var(--ops-ink); font-size: clamp(34px, 5vw, 52px); font-weight: 650; line-height: 1.02; margin: 0; }
+.about-intro-copy { color: var(--ops-muted); font-size: 14px; line-height: 1.75; margin: 22px 0 0; max-width: 620px; }
+.about-release { align-self: end; border-left: 1px solid var(--ops-line-strong); padding-left: 24px; }
+.about-release p, .about-release span { color: var(--ops-muted); font: 10px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; letter-spacing: .1em; margin: 0; text-transform: uppercase; }
+.about-release strong { color: var(--ops-ink); display: block; font: 14px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; margin: 10px 0 7px; }
+.about-release span { font-size: 11px; letter-spacing: 0; text-transform: none; }
+
+.about-content { padding: 42px 0 70px; }
+.about-section { margin-bottom: 44px; }
+.about-section:last-child { margin-bottom: 0; }
+.about-section-heading { align-items: baseline; border-bottom: 1px solid var(--ops-line); display: flex; justify-content: space-between; padding-bottom: 13px; }
+.about-section-heading h2 { color: var(--ops-ink); font-size: 11px; font-weight: 700; letter-spacing: .11em; margin: 0; text-transform: uppercase; }
+.about-section-heading > span { color: var(--ops-muted); font: 10px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+.about-information, .about-build { border-left: 1px solid var(--ops-line); display: grid; margin: 0; }
+.about-information { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.about-information > div, .about-build > div { border-bottom: 1px solid var(--ops-line); border-right: 1px solid var(--ops-line); min-width: 0; padding: 19px 20px 20px; }
+.about-information > div:nth-child(-n + 2) { padding-top: 22px; }
+.about-information dt, .about-build dt, .about-developer small { color: var(--ops-muted); font-size: 10px; font-weight: 650; letter-spacing: .09em; margin-bottom: 8px; text-transform: uppercase; }
+.about-information dd { color: var(--ops-ink); font-size: 13px; font-weight: 500; line-height: 1.5; margin: 0; overflow-wrap: anywhere; }
+.about-mono, .about-build dd { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
+.about-status { align-items: center; color: var(--ops-online); display: inline-flex; gap: 8px; }
+.about-status i { background: var(--ops-online); border-radius: 50%; box-shadow: 0 0 0 3px color-mix(in srgb, var(--ops-online) 10%, transparent); height: 6px; width: 6px; }
+
+.about-developer { border-left: 1px solid var(--ops-line); display: grid; grid-template-columns: 1fr 1fr; }
+.about-developer > div { border-bottom: 1px solid var(--ops-line); border-right: 1px solid var(--ops-line); min-width: 0; padding: 25px 22px; }
+.about-developer strong { color: var(--ops-ink); display: block; font-size: 20px; font-weight: 600; letter-spacing: -.02em; }
+.about-developer span { color: var(--ops-muted); display: block; font-size: 12px; margin-top: 7px; }
+.about-developer > div:last-child span { color: var(--ops-ink); font-size: 13px; margin-top: 0; }
+.about-developer small { display: block; }
+
+.about-stack { display: flex; flex-wrap: wrap; gap: 7px; padding-top: 19px; }
+.about-stack span { background: color-mix(in srgb, var(--ops-surface) 85%, var(--ops-canvas)); border: 1px solid var(--ops-line); border-radius: 5px; color: var(--ops-muted); font: 10px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; padding: 7px 9px; transition: border-color .14s ease, color .14s ease, background-color .14s ease; }
+.about-stack span:hover { background: var(--ops-hover); border-color: var(--ops-line-strong); color: var(--ops-ink); }
+.about-description { color: var(--ops-muted); font-size: 13px; line-height: 1.8; margin: 20px 0 0; max-width: 760px; }
+.about-build { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.about-build > div { padding: 17px 18px; }
+.about-build dt { font-size: 9px; margin-bottom: 7px; }
+.about-build dd { color: var(--ops-muted); font-size: 11px; margin: 0; overflow-wrap: anywhere; }
+.about-footer { border-top: 1px solid var(--ops-line); color: var(--ops-muted); display: flex; font: 10px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; justify-content: space-between; margin-top: auto; padding: 25px 0 30px; }
+
+@media (max-width: 1050px) { .about-page { margin-left: 72px; } }
+
+@media (max-width: 760px) {
+    .about-app .sidebar { position: fixed; }
+    .about-page { margin: 0; padding: 0 16px 84px; }
+    .about-header { gap: 14px; min-height: 64px; }
+    .about-path { display: none; }
+    .about-intro { gap: 30px; grid-template-columns: 1fr; padding: 58px 0 38px; }
+    .about-release { align-self: start; padding-left: 16px; }
+    .about-footer { margin-bottom: 0; }
+}
+
+@media (max-width: 520px) {
+    .about-brand strong { display: none; }
+    .about-intro { padding: 45px 0 32px; }
+    .about-intro h1 { font-size: 34px; }
+    .about-intro-copy { font-size: 13px; margin-top: 18px; }
+    .about-information, .about-developer, .about-build { grid-template-columns: 1fr; }
+    .about-information > div, .about-information > div:nth-child(-n + 2) { padding: 17px 16px; }
+    .about-developer > div { padding: 21px 17px; }
+    .about-content { padding: 34px 0 50px; }
+    .about-footer { align-items: flex-start; flex-direction: column; gap: 8px; }
+}
